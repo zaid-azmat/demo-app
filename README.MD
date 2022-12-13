@@ -1,14 +1,17 @@
-# Simple Node.js + Docker example
+# Multi-stage Docker build example
 
-The simplest possible example of using Node.js and Docker.
+A more complicated Node.js and Docker example that has a multi-stage build.
+
+This includes a build process for compiling TypeScript files to JavaScript.
 
 ## Files
 
-- simple/
-  - src/index.js      Example Express web server.
+- multi/
+  - src/index.ts      Example Express web server in TypeScript.
   - .dockerignore     Make Docker ignore specified files.
   - Dockerfile        Script file for building our Docker image.
   - package.json      Node.js package file, specifies npm dependencies.
+  - tsconfig.json     Configuration file for the TypeScript compiler.
 
 ## Setup
 
@@ -17,13 +20,19 @@ You need Node.js and Docker installed.
 First change to the directory and install dependencies:
 
 ```bash
-cd simple
+cd multi
 npm install
 ```
 
 ## Directly run
 
-The example Node.js application is just "Hello world", you run it directly like this:
+Before running the Node.js application you must build the TypeScripot code:
+
+```bash
+npm run build
+```
+
+Now, run it directly like this:
 
 ```bash
 npm start
@@ -48,7 +57,6 @@ To see what Docker images you have locally:
 ```bash
 npm run docker:ls
 ```
-
 To see what Docker containers you have running:
 
 ```bash
